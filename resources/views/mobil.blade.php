@@ -47,7 +47,6 @@
                     <thead>
                         <tr>
                             <th>Tipe Mobil</th>
-                            <th>Plat Nomor</th>
                             <th>Bensin</th>
                             <th>Jumlah</th>
                             <th>Status</th>
@@ -59,7 +58,6 @@
                         @foreach ($mobils as $mobil)
                         <tr>
                             <td>{{ $mobil->tipe_mobil }}</td>
-                            <td>{{ $mobil->plat_nomor }}</td>
                             <td>{{ $mobil->bensin }}</td>
                             <td>{{ $mobil->jumlah }}</td>
                             <td>{{ $mobil->status }}</td>
@@ -80,17 +78,14 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('mobil.update', $Mobil->id) }}" method="POST">
+                                        <form action="{{ route('mobil.update', $mobil->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group">
                                                 <label for="tipe_mobil">Tipe Mobil:</label>
                                                 <input type="text" name="tipe_mobil" class="form-control" value="{{ $mobil->tipe_mobil }}">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="plat_nomor">Plat Nomor:</label>
-                                                <input type="text" name="plat_nomor" class="form-control" value="{{ $mobil->plat_nomor }}">
-                                            </div>
+                                            
                                             <div class="form-group">
                                                 <label for="plat_nomor">Bensin:</label>
                                                 <input type="text" name="bensin" class="form-control" value="{{ $mobil->bensin }}">
@@ -125,17 +120,17 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel">Delete Sopir</h5>
+                                            <h5 class="modal-title" id="deleteModalLabel">Delete Mobil</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Are you sure you want to delete {{ $mobil-> }}?</p>
+                                            <p>Are you sure you want to delete {{ $mobil->tipe_mobil }}?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <form action="{{ route('sopir.destroy', $sopir->id) }}" method="POST">
+                                            <form action="{{ route('sopir.destroy', $mobil->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -158,48 +153,49 @@
 
                 <!-- Modal Create -->
                 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="createModalLabel">Create Mobil</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('sopir.store') }}" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="nama">Nama:</label>
-                                        <input type="text" name="nama" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat">Alamat:</label>
-                                        <input type="text" name="alamat" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jenis_kelamin">Jenis Kelamin:</label>
-                                        <select name="jenis_kelamin" class="form-control">
-                                            <option value="laki-laki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="status">Status:</label>
-                                        <select name="status" class="form-control">
-                                            <option value="tersedia">Tersedia</option>
-                                            <option value="tidak tersedia">Tidak Tersedia</option>
-                                        </select>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Create</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel">Create Mobil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('mobil.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="tipe_mobil">Tipe Mobil:</label>
+                        <input type="text" name="tipe_mobil" class="form-control">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="bensin">Bensin:</label>
+                        <input type="number" name="bensin" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah">Jumlah:</label>
+                        <input type="number" name="jumlah" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select name="status" class="form-control">
+                            <option value="disewa">Disewa</option>
+                            <option value="tidak disewa">Tidak Disewa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah_mobil">Jumlah Mobil:</label>
+                        <input type="number" name="jumlah_mobil" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
             <!-- /.card -->
         </div>

@@ -11,7 +11,6 @@ class MobilController extends Controller
     public function list(Request $request) {
         $search = $request->input('search');
         $mobils = mobil::where('tipe_mobil', 'like', "%$search%")
-            ->orWhere('plat_nomor', 'like', "%$search%")
             ->orWhere('bensin', 'like', "%$search%")
             ->orWhere('jumlah', 'like', "%$search%")
             ->orWhere('status', 'like', "%$search%")
@@ -25,7 +24,6 @@ class MobilController extends Controller
             public function store(Request $request) {
                 $mobil = new mobil();
                 $mobil->tipe_mobil = $request->input('tipe_mobil');
-                $mobil->plat_nomor = $request->input('plat_nomor');
                 $mobil->bensin = $request->input('bensin');
                 $mobil->jumlah = $request->input('jumlah');
                 $mobil->status = $request->input('status');
@@ -38,7 +36,6 @@ class MobilController extends Controller
             public function update(Request $request, $id) {
                 $mobil = mobil::findOrFail($id);
                 $mobil->tipe_mobil = $request->input('tipe_mobil');
-                $mobil->plat_nomor = $request->input('plat_nomor');
                 $mobil->bensin = $request->input('bensin');
                 $mobil->jumlah = $request->input('jumlah');
                 $mobil->status = $request->input('status');

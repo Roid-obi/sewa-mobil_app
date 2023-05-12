@@ -88,7 +88,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{ route('transaksi.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pesanan Baru</p>
                 </a>

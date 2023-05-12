@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama-peminjam');
-            $table->string('tipe-mobil');
+            $table->string('nama_peminjam');
+            $table->string('tipe_mobil');
             $table->string('Sopir');
-            $table->integer('total-pembayaran');
-            $table->string('bukti-pengembalian')->nullable();
+            $table->integer('total_pembayaran');
+            $table->string('bukti_pengembalian')->nullable();
             $table->string('status'); //pesanan baru/dalam peminjaman/pengembalian /jika statusnya pengembalian maka wajib di isi
             $table->timestamps();
         });

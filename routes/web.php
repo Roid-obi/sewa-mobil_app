@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SopirController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsersController;
 use App\Http\Middleware\roleCek;
 use Illuminate\Support\Facades\Auth;
@@ -58,4 +59,15 @@ Route::prefix('mobil')->group(function () {
 Route::prefix('armada-mobil')->group(function () {
     Route::get('/', [ArmadaMobilController::class, 'list'])->name('armada-mobil.list');
     Route::put('/{mobil}', [ArmadaMobilController::class, 'update'])->name('armada-mobil.update');
+});
+
+Route::prefix('transaksi')->group(function () {
+    Route::get('/', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::get('/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+    Route::post('/', [TransaksiController::class, 'store'])->name('transaksi.store');
+    Route::get('/{id}', [TransaksiController::class, 'show'])->name('transaksi.show');
+    Route::get('/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
+    Route::put('/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+    Route::delete('/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
+    Route::put('/{id}/peminjaman', [TransaksiController::class, 'peminjaman'])->name('transaksi.peminjaman');
 });

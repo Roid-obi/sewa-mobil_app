@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h3 class="card-title">Daftar Semua Master Mobil</h3>
+                        <h3 class="card-title">Daftar Semua Armada Mobil</h3>
                         <form action="{{ route('armada-mobil.list') }}" method="GET" class="form-inline ml-auto">
                             <div class="input-group input-group-sm">
                                 <input class="form-control form-control-navbar" type="search" placeholder="Cari nama atau email" name="search" value="{{ request('search') }}">

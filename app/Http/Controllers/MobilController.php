@@ -28,9 +28,11 @@ class MobilController extends Controller
                 $mobil->jumlah = $request->input('jumlah');
                 $mobil->status = $request->input('status');
                 $mobil->jumlah_mobil = $request->input('jumlah_mobil');
+                $mobil->plat_nomor = ''; // Mengisi plat_nomor dengan nilai kosong
                 $mobil->save();
                 return redirect()->route('mobil.list');
             }
+            
         
             // menyimpan perubahan pada sopir ke database
             public function update(Request $request, $id) {
